@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.zz.libnavannotation.FragmentDestination
 import com.zz.ppjoke.R
 import kotlinx.android.synthetic.main.fragment_home.text_home
 
+@FragmentDestination(pageUrl = "main/tabs/home",asStarter = true)
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel

@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.zz.libnavannotation.FragmentDestination
 import com.zz.ppjoke.R
 import com.zz.ppjoke.databinding.FragmentDashboardBinding
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
+@FragmentDestination(pageUrl = "main/tabs/dashboard",asStarter = false)
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
