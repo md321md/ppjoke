@@ -15,30 +15,16 @@ fun getDestConfig(): HashMap<String, Destination> {
     // fastjson转换有点问题 所以改用gson
 //    val parseObject =
 //        JSON.parseObject(content, object : TypeReference<HashMap<String, Any>>() {})
-    return Gson().fromJson(content, object : TypeToken<HashMap<String?, Destination?>?>() {}.type)
+    return if (content.isEmpty()) {
+        HashMap()
+    } else {
+        Gson().fromJson(content, object : TypeToken<HashMap<String?, Destination?>?>() {}.type)
+    }
 }
 
 // 读取文件解析文件
-private fun parseFile1(fileName: String): String {
-    val fileJson = getApplication()?.let {
-        val assets = it.resources.assets
-        val stringBuilder: StringBuilder = StringBuilder()
-        val stream: InputStream = assets.open(fileName)
-        BufferedReader(InputStreamReader(stream)).use {
-            var line: String?
-            while (true) {
-                line = readLine()
-                if (line == null) break
-                stringBuilder.append(line)
-            }
-        }
-        stringBuilder.toString()
-    }
-    return fileJson ?: ""
-}
-
 private fun parseFile(fileName: String): String {
-    var fileJson = ""
+    var fileJson: String
     val application = JokeApplication.application
     val stringBuilder: StringBuilder = StringBuilder()
     val assets = application.resources.assets
@@ -54,4 +40,3 @@ private fun parseFile(fileName: String): String {
     fileJson = stringBuilder.toString()
     return fileJson
 }
-
